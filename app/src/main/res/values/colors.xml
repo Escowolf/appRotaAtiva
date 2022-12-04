@@ -5,6 +5,10 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="padraoPrimeira">#A5D5CC</color>
+    <color name="padraoBackground">#017272</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grayHint">#F5CFCFCF</color>
+    <color name="gray">#929292</color>
 </resources>

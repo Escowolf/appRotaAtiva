@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "108611398752",
+    "firebase_url": "https://rota-ativa-pads-default-rtdb.firebaseio.com",
+    "project_id": "rota-ativa-pads",
+    "storage_bucket": "rota-ativa-pads.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108611398752:android:53b2440567cdee976b6705",
+        "android_client_info": {
+          "package_name": "com.example.approtaativa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108611398752-0vqj7splfg8oe0v6f80dgpofb1m6nrk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGHyirioPvt1skDymT2_5TPjNzPzyMqr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108611398752-0vqj7splfg8oe0v6f80dgpofb1m6nrk3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
