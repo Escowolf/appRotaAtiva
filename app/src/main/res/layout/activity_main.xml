@@ -56,16 +56,17 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:layout_weight="1"
         android:backgroundTint="@color/padraoPrimeira"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/action_sign_in_short"
-        android:textColor="@color/padraoBackground"
+        android:textColor="#006064"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPassword" />
@@ -78,6 +79,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_weight="1"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/stringOR"
         android:textAlignment="center"
         android:textColor="@color/padraoPrimeira"
@@ -88,27 +90,46 @@
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btnGoogleSingIn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/imgLogo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/logo"
+        android:foregroundGravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/g5638" />
+
+    <TextView
+        android:id="@+id/txtCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:foregroundGravity="center_vertical|center"
+        android:clickable="true"
+        android:fontFamily="@font/poppins_light"
+        android:minHeight="48dp"
+        android:text="@string/txtCadastro"
+        android:textColor="@color/padraoPrimeira"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/g5638" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGoogleSingIn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,15 @@
     <string name="invalid_password">A senha deve ser >5 caracteres</string>
     <string name="login_failed">"Falha no login"</string>
     <string name="btnLogout">Sair</string>
-    <string name="todo">TODO</string>
+    <string name="logo">Logo do projeto</string>
     <string name="stringOR">OU</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="anivers_rio">Aniversário</string>
+    <string name="e_mail">E-mail</string>
+    <string name="txtCadastro">Clique aqui para realizar seu cadastro!</string>
+    <string name="perfil">Perfil</string>
+    <string name="saudacao">Seja bem-vindo!</string>
+
+
 </resources>

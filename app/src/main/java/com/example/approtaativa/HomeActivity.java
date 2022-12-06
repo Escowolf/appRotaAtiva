@@ -2,6 +2,7 @@ package com.example.approtaativa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -21,12 +22,15 @@ public class HomeActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.btnSair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.getInstance().signOut();
-                finish();
-            }
+        binding.btnSair.setOnClickListener(view1 -> {
+            mAuth.getInstance().signOut();
+            finish();
+        });
+
+        binding.btnPerfil.setOnClickListener(view12 -> {
+            finish();
+            Intent intent = new Intent(getApplicationContext(),RegistrationActivity.class);
+            startActivity(intent);
         });
     }
 }

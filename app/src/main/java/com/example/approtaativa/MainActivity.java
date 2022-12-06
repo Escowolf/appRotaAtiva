@@ -63,8 +63,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnGoogleSingIn.setOnClickListener(view1 -> {
-           signIn();
+        binding.btnGoogleSingIn.setOnClickListener(view1 -> signIn());
+
+        binding.txtCadastro.setOnClickListener(view13 -> {
+            try{
+                criarUsuarioEsenha(binding.textEmail.getText().toString(),
+                        binding.textPassword.getText().toString());
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(),"Preencha todos os campos",Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -103,6 +110,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void criarUsuarioEsenha(String emailUsuario, String senha){
+        mAuth.createUserWithEmailAndPassword(emailUsuario, senha);
+
+        Toast.makeText(getApplicationContext(), "Cadastro efetuado com sucesso!", Toast.LENGTH_LONG).show();
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
@@ -120,25 +134,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void loginUsuarioSenha(String emailUsuario, String senha){
         mAuth.signInWithEmailAndPassword(emailUsuario, senha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCustomToken:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(getApplicationContext(), "Login efetuado com sucesso!", Toast.LENGTH_LONG).show();
-                            abrirHome();
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCustomToken:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(getApplicationContext(), "Login efetuado com sucesso!", Toast.LENGTH_LONG).show();
+                        abrirHome();
 //                                    updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCustomToken:failure", task.getException());
-                            Toast.makeText(getApplicationContext(), "Falha ao logar.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCustomToken:failure", task.getException());
+                        Toast.makeText(getApplicationContext(), "Falha ao logar.", Toast.LENGTH_SHORT).show();
 
 //                            Toast.makeText(CustomAuthActivity.this, "Authentication failed.",
 //                                    Toast.LENGTH_SHORT).show();
 //                                    updateUI(null);
-                        }
                     }
                 });
     }
@@ -156,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         try{
-            Toast.makeText(getApplicationContext(), "Usuário "+currentUser.getEmail()+" logado.", Toast.LENGTH_LONG).show();
+            if (currentUser != null) {
+                Toast.makeText(getApplicationContext(), "Usuário "+currentUser.getEmail()+" logado.", Toast.LENGTH_LONG).show();
+            }
             abrirHome();
         }catch (Exception e){
 //
