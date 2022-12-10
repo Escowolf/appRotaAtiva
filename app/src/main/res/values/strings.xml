@@ -18,7 +18,11 @@
     <string name="e_mail">E-mail</string>
     <string name="txtCadastro">Clique aqui para realizar seu cadastro!</string>
     <string name="perfil">Perfil</string>
-    <string name="saudacao">Seja bem-vindo!</string>
-
+    <string name="saudacao">Seja bem-vinda(o)!</string>
+    <string name="cadastro_saud">Faça seu cadastro</string>
+    <string name="menu_01">Home</string>
+    <string name="menu_02">Sair</string>
+    <string name="maps_hint">Onde você deseja ir?</string>
+    <string name="action_singup">Cadastrar</string>
 
 </resources>

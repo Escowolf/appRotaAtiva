@@ -13,7 +13,26 @@
         android:theme="@style/Theme.AppRotaAtiva"
         tools:targetApi="31">
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".SingupActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <activity
+            android:name=".PerfilActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

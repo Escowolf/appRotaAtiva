@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:backgroundTint="@color/white"
     android:backgroundTintMode="add"
-    tools:context=".RegistrationActivity">
+    tools:context=".PerfilActivity">
 
     <Button
         android:id="@+id/btnRegistro"
@@ -123,5 +123,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

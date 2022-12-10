@@ -7,60 +7,13 @@
     android:background="@color/padraoBackground"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/textEmail"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_weight="1"
-        android:autofillHints=""
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="@string/prompt_email"
-        android:inputType="textWebEmailAddress"
-        android:minHeight="48dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
-
-    <EditText
-        android:id="@+id/textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_weight="1"
-        android:autofillHints=""
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:hint="@string/prompt_password"
-        android:inputType="text|textPassword"
-        android:minHeight="48dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textEmail" />
-
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnLoginMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
         android:layout_weight="1"
         android:backgroundTint="@color/padraoPrimeira"
@@ -69,67 +22,40 @@
         android:textColor="#006064"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/stringOR"
-        android:textAlignment="center"
-        android:textColor="@color/padraoPrimeira"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/btnGoogleSingIn"
+    <Button
+        android:id="@+id/btnSignupMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/padraoPrimeira"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/action_singup"
+        android:textColor="#006064"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLoginMain" />
 
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="128dp"
         android:layout_marginEnd="32dp"
         android:contentDescription="@string/logo"
-        android:foregroundGravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/g5638" />
-
-    <TextView
-        android:id="@+id/txtCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:clickable="true"
-        android:fontFamily="@font/poppins_light"
-        android:minHeight="48dp"
-        android:text="@string/txtCadastro"
-        android:textColor="@color/padraoPrimeira"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGoogleSingIn" />
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@drawable/rotativa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
