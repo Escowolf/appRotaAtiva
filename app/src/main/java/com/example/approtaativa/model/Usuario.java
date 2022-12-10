@@ -18,20 +18,29 @@ public class Usuario {
     private String cpf;
     private String dataNasc;
     private String email;
-//    private Telefone telefone;
+    private String senha;
+    //    private Telefone telefone;
     private String tickets;
 //    private Veiculo veiculos;
 
-    public Usuario() {
-        //
+    public Usuario(){
+
+    }
+    public Usuario(String id, String nome, String email, String cpf, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.senha = senha;
     }
 
-    public Usuario(String id, String nome, String cpf, String dataNasc, String email, String tickets) {
+    public Usuario(String id, String nome, String cpf, String dataNasc, String email, String senha, String tickets) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
         this.email = email;
+        this.senha = senha;
         this.tickets = tickets;
     }
 
@@ -42,6 +51,7 @@ public class Usuario {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getNome() {
         return nome;
     }
@@ -74,6 +84,14 @@ public class Usuario {
         this.email = email;
     }
 
+    public String getSenha(String senha) {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public String getTickets() {
         return tickets;
     }
@@ -82,10 +100,9 @@ public class Usuario {
         this.tickets = tickets;
     }
 
-    public void salvar (){
+    public void salvarUsuario() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         reference.child("usuarios").child(getId()).setValue(this);
-
         // Read from the database
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,5 +120,4 @@ public class Usuario {
             }
         });
     }
-
 }

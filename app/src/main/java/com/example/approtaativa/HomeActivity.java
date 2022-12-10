@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.example.approtaativa.databinding.ActivityHomeBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
     private FirebaseAuth mAuth;
-    private ActivityHomeBinding binding;
+    ActivityHomeBinding binding;
     private GoogleMap mMap;
 
     @Override
@@ -32,43 +33,37 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync( this);;
+        assert mapFragment != null;
+        mapFragment.getMapAsync( this);
     }
 
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(@NonNull LatLng latLng) {
-                mMap.addMarker(
-                        new MarkerOptions()
-                                .position(latLng)
-                                .title("local")
-                                .snippet("local descricao")
-                        //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                        //.icon(BitmapDescriptorFactory.fromResource())
-                );
-            }
-        });
+        mMap.setOnMapClickListener(latLng -> mMap.addMarker(
+                new MarkerOptions()
+                        .position(latLng)
+                        .title("local")
+                        .snippet("local descricao")
+                //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                //.icon(BitmapDescriptorFactory.fromResource())
+        ));
 
-        // Add a marker in Sydney and move the camera
-        LatLng pracaPortugal = new LatLng(-3.7332708544200246, -38.49739677277303);
-        // -3.7332708544200246, -38.49739677277303
+        LatLng unifor = new LatLng(-3.7687785156399696, -38.48148732259529);
+
         mMap.addMarker(
                 new MarkerOptions()
-                        .position(pracaPortugal)
-                        .title("Praça Portugal")
-                        .snippet("Praça de Fortaleza localizada na Aldeota")
+                        .position(unifor)
+                        .title("Unifor")
+                        .snippet("Universidade de Fortaleza")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 //.icon(BitmapDescriptorFactory.fromResource())
         );
 
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pracaPortugal, 17));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(unifor, 17));
     }
 
     @Override
@@ -93,13 +88,16 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void perfil(){
+        finish();
         Intent intent = new Intent(getApplicationContext(), PerfilActivity.class);
         startActivity(intent);
     }
 
     public void logout(){
-        mAuth.getInstance().signOut();
         finish();
+        mAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 
 }

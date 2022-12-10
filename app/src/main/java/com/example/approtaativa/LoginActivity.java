@@ -138,8 +138,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void abrirHome(){
-        binding.txtEmail.setText("");
-        binding.txtSenha.setText("");
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(intent);
     }

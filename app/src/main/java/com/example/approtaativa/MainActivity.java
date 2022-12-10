@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private ActivityMainBinding binding;
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +33,11 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         binding.btnLoginMain.setOnClickListener(view1 -> {
-            finish();
             Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
             startActivity(intent);
         });
 
-        binding.btnSignupMain.setOnClickListener(view12 -> {
-           abrirSingup();
-        });
+        binding.btnSignupMain.setOnClickListener(view12 -> MainActivity.this.abrirSingup());
     }
 
     @Override
@@ -51,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             if (currentUser != null) {
                 Toast.makeText(getApplicationContext(), "Usuário "+currentUser.getEmail()+" logado.", Toast.LENGTH_LONG).show();
-                finish();
                 abrirHome();
             }
         }catch (Exception e){
@@ -60,12 +56,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void abrirHome(){
+        finish();
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         startActivity(intent);
-        finish();
     }
 
     private void abrirSingup(){
+        finish();
         Intent intent = new Intent(getApplicationContext(), SingupActivity.class);
         startActivity(intent);
     }
