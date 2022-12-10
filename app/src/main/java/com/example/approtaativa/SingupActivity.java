@@ -35,8 +35,8 @@ public class SingupActivity extends AppCompatActivity {
 
         binding.btnSingup.setOnClickListener(view13 -> {
             try{
-                criarUsuarioEsenha(binding.txtEmailCad.getText().toString(),
-                        binding.txtconfirmaSenha.getText().toString());
+                criarUsuarioEsenha(binding.txtEmail.getText().toString(),
+                        binding.txtCheckSenha.getText().toString());
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(),"Preencha todos os campos",Toast.LENGTH_SHORT).show();
             }
@@ -67,13 +67,11 @@ public class SingupActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_main:
-                main();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_main) {
+            main();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void main(){

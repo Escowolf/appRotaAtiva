@@ -56,10 +56,10 @@ public class LoginActivity extends AppCompatActivity {
 
         googleSignInClient = GoogleSignIn.getClient(this,gso);
 
-        binding.btnSingup.setOnClickListener(view12 -> {
+        binding.btnLogin.setOnClickListener(view12 -> {
             try{
-                loginUsuarioSenha(binding.textEmail.getText().toString(),
-                        binding.textPassword.getText().toString());
+                loginUsuarioSenha(binding.txtEmail.getText().toString(),
+                        binding.txtSenha.getText().toString());
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(),"Preencha todos os campos",Toast.LENGTH_SHORT).show();
             }
@@ -138,8 +138,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void abrirHome(){
-        binding.textEmail.setText("");
-        binding.textPassword.setText("");
+        binding.txtEmail.setText("");
+        binding.txtSenha.setText("");
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(intent);
     }
@@ -153,13 +153,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_main:
-                main();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_main) {
+            main();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void main(){

@@ -7,9 +7,9 @@
         android:title="@string/menu_Veiculos"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_perfil"
+        android:id="@+id/action_home"
         android:icon="@drawable/ic_baseline_directions_car_24"
-        android:title="@string/menu_Perfil"
+        android:title="@string/menu_Home"
         app:showAsAction="never" />
 
     <item

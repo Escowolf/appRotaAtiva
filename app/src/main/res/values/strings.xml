@@ -20,9 +20,20 @@
     <string name="perfil">Perfil</string>
     <string name="saudacao">Seja bem-vinda(o)!</string>
     <string name="cadastro_saud">Faça seu cadastro</string>
-    <string name="menu_01">Home</string>
-    <string name="menu_02">Sair</string>
+    <string name="menu_Perfil">Perfil</string>
+    <string name="menu_Sair">Sair</string>
+    <string name="menu_Home">Home</string>
+    <string name="menu_Veiculos">Veículos</string>
+    <string name="menu_Voltar">Voltar</string>
     <string name="maps_hint">Onde você deseja ir?</string>
     <string name="action_singup">Cadastrar</string>
+    <string name="txtUser">Usuário</string>
+    <string name="editPerfil">Você pode alterar seus dados abaixo</string>
+    <string name="txtTelefone">Telefone</string>
+    <string name="email">E-MAIL</string>
+    <string name="senha">SENHA</string>
+    <string name="gdpdescription">imagem do gps</string>
+    <string name="usuariodescription">Imagem do usuário</string>
+    <string name="geolocalizacaodescription">Botão para buscar geolocalização</string>
 
 </resources>

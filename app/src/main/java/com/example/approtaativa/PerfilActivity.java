@@ -5,39 +5,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.approtaativa.databinding.ActivityRegistrationBinding;
+import com.example.approtaativa.databinding.ActivityPerfilBinding;
 import com.example.approtaativa.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class PerfilActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private EditText txtNome;
-    private EditText txtEmail;
 
-    ActivityRegistrationBinding binding;
+
+    ActivityPerfilBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
+        binding = ActivityPerfilBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        txtEmail = binding.txtEmail;
-        txtNome = binding.txtNome;
+        EditText txtEmail = binding.txtEmail;
+        TextView txtNome =  binding.txtUsernameEdit;
 
         binding.btnRegistro.setOnClickListener(view1 -> {
-            Usuario userModel = new Usuario();
-
-            userModel.setId(mAuth.getUid());
-            userModel.setEmail(txtEmail.getText().toString());
-            userModel.setNome(txtNome.getText().toString());
-            userModel.salvar();
-            Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
+//            Usuario userModel = new Usuario();
+//
+//            userModel.setId(mAuth.getUid());
+//            userModel.getEmail(txtEmail.getText().toString());
+//            userModel.setNome(txtNome.getText().toString());
+//            userModel.salvar();
+//            Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
         });
     }
 }
