@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         try{
             if (currentUser != null) {
+                finish();
                 Toast.makeText(getApplicationContext(), "Usuário "+currentUser.getEmail()+" logado.", Toast.LENGTH_LONG).show();
                 abrirHome();
             }
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void abrirHome(){
-        finish();
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         startActivity(intent);
     }

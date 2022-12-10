@@ -31,9 +31,14 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+//        SupportMapFragment mapFragment = SupportMapFragment.newInstance();
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.map, mapFragment)
+//                .commit();
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        assert mapFragment != null;
         mapFragment.getMapAsync( this);
     }
 
@@ -41,7 +46,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         mMap.setOnMapClickListener(latLng -> mMap.addMarker(
                 new MarkerOptions()
@@ -79,6 +84,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.action_perfil:
                 perfil();
                 return true;
+            case R.id.action_veiculos:
+                veiculos();
+                return true;
             case R.id.action_logout:
                 logout();
                 return true;
@@ -88,8 +96,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void perfil(){
-        finish();
         Intent intent = new Intent(getApplicationContext(), PerfilActivity.class);
+        startActivity(intent);
+    }
+
+    public void veiculos(){
+        Intent intent = new Intent(getApplicationContext(), VeiculosActivity.class);
         startActivity(intent);
     }
 

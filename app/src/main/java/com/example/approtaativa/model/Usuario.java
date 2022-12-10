@@ -12,16 +12,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Map;
+
 public class Usuario {
+
     private String id;
     private String nome;
     private String cpf;
     private String dataNasc;
     private String email;
     private String senha;
-    //    private Telefone telefone;
     private String tickets;
-//    private Veiculo veiculos;
 
     public Usuario(){
 
@@ -103,21 +104,19 @@ public class Usuario {
     public void salvarUsuario() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         reference.child("usuarios").child(getId()).setValue(this);
-        // Read from the database
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id='" + id + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", dataNasc='" + dataNasc + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", tickets='" + tickets + '\'' +
+                '}';
+    }
+
 }
