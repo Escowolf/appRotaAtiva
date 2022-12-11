@@ -7,10 +7,14 @@ public class Veiculo {
     private String id;
     private String placa;
     private String renavan;
-    private String ano;
+    private Long ano;
     private String cor;
 
-    public Veiculo(String id, String placa, String renavan, String ano, String cor) {
+    public Veiculo(){
+        //
+    }
+
+    public Veiculo(String id, String placa, String renavan, Long ano, String cor) {
         this.id = id;
         this.placa = placa;
         this.renavan = renavan;
@@ -34,11 +38,11 @@ public class Veiculo {
         this.renavan = renavan;
     }
 
-    public String getAno() {
+    public Long getAno() {
         return ano;
     }
 
-    public void setAno(String ano) {
+    public void setAno(Long  ano) {
         this.ano = ano;
     }
 

@@ -37,7 +37,8 @@
     <string name="geolocalizacaodescription">Botão para buscar geolocalização</string>
     <string name="cpf">CPF</string>
     <string name="cpfNumber">000.000.000-00</string>
-    <string name="checkSenha">CONFIRME SUA SENHA</string>
+    <string name="checkSenhaLabel">CONFIRME SUA SENHA</string>
+    <string name="checkSenha">Confirme sua senha</string>
     <string name="showSenha">Mostrar senha</string>
     <string name="title_activity_veiculos">VeiculosActivity</string>
     <string name="large_text">
@@ -140,6 +141,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="txtVeiculos">Veículos cadastrados</string>
+    <string name="txtVeiculos">Cadastro de Veículos</string>
 
 </resources>

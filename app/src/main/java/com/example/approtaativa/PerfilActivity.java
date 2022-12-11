@@ -30,7 +30,6 @@ import java.util.Map;
 public class PerfilActivity extends AppCompatActivity {
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference userData = referencia.child("usuarios");
-//    Query nomeUsuarios = userData.orderByChild(nome);
 
     ActivityPerfilBinding binding;
     private FirebaseAuth mAuth;
@@ -43,19 +42,16 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(view);
 
         final DatabaseReference Userref = FirebaseDatabase.getInstance().getReference();
-        // Read from the database
+
         Userref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 Map<Usuario, String> mapaNomes = new HashMap<>();
                 Log.i("firebase", "Value is: " + mapaNomes);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Failed to read value
                 Toast.makeText(getApplicationContext(), "Erro listar usuários", Toast.LENGTH_SHORT).show();
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
