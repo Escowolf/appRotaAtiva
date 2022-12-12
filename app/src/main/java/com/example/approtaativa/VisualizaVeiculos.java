@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.approtaativa.databinding.ActivityVeiculosBinding;
 import com.example.approtaativa.databinding.ActivityVisualizaVeiculosBinding;
 import com.example.approtaativa.model.Veiculo;
 import com.google.firebase.database.DataSnapshot;
@@ -31,8 +29,8 @@ public class VisualizaVeiculos extends AppCompatActivity {
     private ListView listarVeiculos;
 
     ActivityVisualizaVeiculosBinding binding;
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference meusVeiculos = referencia.child("veiculos");
+    private final DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference meusVeiculos = referencia.child("veiculos");
     Query placasVeiculos = meusVeiculos.orderByChild("placa");
 
     @Override
@@ -49,10 +47,11 @@ public class VisualizaVeiculos extends AppCompatActivity {
                 for(DataSnapshot dados: snapshot.getChildren()){
                     Veiculo veiculo = snapshot.getValue(Veiculo.class);
                     Veiculo veiculoData = dados.getValue(Veiculo.class);
+                    assert veiculoData != null;
                     veiArray.add(veiculoData.getPlaca());
                 }
                 listarVeiculos = binding.lisVeiculos;
-                ArrayAdapter<String> adapt = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,android.R.id.text1,veiArray);
+                ArrayAdapter<String> adapt = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_expandable_list_item_2,android.R.id.text1,veiArray);
                 listarVeiculos.setAdapter(adapt);
             }
 

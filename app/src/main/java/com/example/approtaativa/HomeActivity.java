@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.Settings;
 import android.os.Bundle;
@@ -94,6 +95,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(unifor, 17));
     }
 
+
     @Override
     public void onLocationChanged(Location location) {
 
@@ -107,7 +109,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.title("Localização atual");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         currentLocationMaker = mMap.addMarker(markerOptions);
-
 //        try {
 //            //Move to new location
 //            CameraPosition cameraPosition = new CameraPosition.Builder().zoom(15).target(currentLocationLatLong).build();

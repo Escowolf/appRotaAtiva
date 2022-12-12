@@ -92,7 +92,7 @@ public class CameraActivity extends AppCompatActivity {
                 arrayNomesImagens = new String[nomesImagens.size()];
                 nomesImagens.toArray(arrayNomesImagens);
 
-                nomesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, nomesImagens);
+                nomesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_expandable_list_item_2, android.R.id.text1, nomesImagens);
                 lvImagens.setAdapter(nomesAdapter);
             }
 

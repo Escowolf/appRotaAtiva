@@ -2,7 +2,6 @@ package com.example.approtaativa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,25 +9,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.approtaativa.databinding.ActivityPerfilBinding;
-import com.example.approtaativa.databinding.ActivitySingupBinding;
 import com.example.approtaativa.databinding.ActivityVeiculosBinding;
 import com.example.approtaativa.model.Veiculo;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class VeiculosActivity extends AppCompatActivity {
     ActivityVeiculosBinding binding;
@@ -36,9 +24,7 @@ public class VeiculosActivity extends AppCompatActivity {
     private EditText renavan;
     private EditText placa;
     private EditText ano;
-    private Button cadastrar;
-    private Button visualizar;
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +37,8 @@ public class VeiculosActivity extends AppCompatActivity {
         renavan = binding.txtRenavan;
         cor = binding.txtCor;
         ano = binding.txtAno;
-        cadastrar = binding.btnAdicionar;
-        visualizar = binding.btnVisualizar;
+        Button cadastrar = binding.btnAdicionar;
+        Button visualizar = binding.btnVisualizar;
 
         cadastrar.setOnClickListener(view1 -> {
             DatabaseReference veiculo = referencia.child("veiculos");
@@ -65,6 +51,7 @@ public class VeiculosActivity extends AppCompatActivity {
             veiculo.push().setValue(veiculoData);
 
             Toast.makeText(getApplicationContext(), "Veiculo "+placa.getText() +" cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+            limpaCampos();
         });
 
         visualizar.setOnClickListener(view12 -> {
@@ -73,6 +60,12 @@ public class VeiculosActivity extends AppCompatActivity {
         });
     }
 
+    public void limpaCampos(){
+        binding.txtPlaca.setText("");
+        binding.txtRenavan.setText("");
+        binding.txtCor.setText("");
+        binding.txtAno.setText("");
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
