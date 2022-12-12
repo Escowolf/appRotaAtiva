@@ -142,5 +142,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="txtVeiculos">Cadastro de Veículos</string>
+    <string name="fotografias">Fotografias</string>
 
 </resources>

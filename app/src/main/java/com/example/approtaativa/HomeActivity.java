@@ -1,5 +1,7 @@
 package com.example.approtaativa;
 
+import static android.location.LocationManager.*;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -59,11 +62,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = SupportMapFragment.newInstance();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.map, mapFragment)
-//                .commit();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync( this);
@@ -81,8 +79,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         .position(latLng)
                         .title("local")
                         .snippet("local descricao")
-                //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                //.icon(BitmapDescriptorFactory.fromResource())
         ));
 
         LatLng unifor = new LatLng(-3.7687785156399696, -38.48148732259529);
@@ -92,8 +88,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         .position(unifor)
                         .title("Unifor")
                         .snippet("Universidade de Fortaleza")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                //.icon(BitmapDescriptorFactory.fromResource())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
         );
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(unifor, 17));
@@ -102,9 +97,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onLocationChanged(Location location) {
 
-        if (currentLocationMaker != null) {
-            currentLocationMaker.remove();
-        }
+//        if (currentLocationMaker != null) {
+//            currentLocationMaker.remove();
+//        }
         //Add marker
         currentLocationLatLong = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
@@ -113,12 +108,16 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         currentLocationMaker = mMap.addMarker(markerOptions);
 
-        //Move to new location
-        CameraPosition cameraPosition = new CameraPosition.Builder().zoom(15).target(currentLocationLatLong).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-        LocationData locationData = new LocationData(location.getLatitude(), location.getLongitude());
-        mDatabase.child("location").child(String.valueOf(new Date().getTime())).setValue(locationData);
+//        try {
+//            //Move to new location
+//            CameraPosition cameraPosition = new CameraPosition.Builder().zoom(15).target(currentLocationLatLong).build();
+//            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//
+//            LocationData locationData = new LocationData(location.getLatitude(), location.getLongitude());
+//            mDatabase.child("location").child(String.valueOf(new Date().getTime())).setValue(locationData);
+//        }catch (Exception e){
+//            Log.e("MAPS: ","ERROR "+e.getMessage());
+//        }
 
         Toast.makeText(this, "Localização atualizada", Toast.LENGTH_SHORT).show();
         getMarkers();
@@ -169,8 +168,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        boolean isGPS = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        boolean isNetwork = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        boolean isGPS = lm.isProviderEnabled(GPS_PROVIDER);
+        boolean isNetwork = lm.isProviderEnabled(NETWORK_PROVIDER);
         boolean canGetLocation = true;
         int ALL_PERMISSIONS_RESULT = 101;
         long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;// Distance in meters
@@ -199,7 +198,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
 
-
         //Checks if FINE LOCATION and COARSE Location were granted
         if (ActivityCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -214,14 +212,14 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (canGetLocation) {
             if (isGPS) {
                 lm.requestLocationUpdates(
-                        LocationManager.GPS_PROVIDER,
+                        GPS_PROVIDER,
                         MIN_TIME_BW_UPDATES,
                         MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
             } else if (isNetwork) {
                 // from Network Provider
                 lm.requestLocationUpdates(
-                        LocationManager.NETWORK_PROVIDER,
+                        NETWORK_PROVIDER,
                         MIN_TIME_BW_UPDATES,
                         MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
@@ -232,21 +230,25 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void getMarkers(){
+        try {
+            mDatabase.child("location").addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            //Get map of users in datasnapshot
+                            if (dataSnapshot.getValue() != null)
+                                getAllLocations((Map<String,Object>) dataSnapshot.getValue());
+                        }
 
-        mDatabase.child("location").addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
-                        if (dataSnapshot.getValue() != null)
-                            getAllLocations((Map<String,Object>) dataSnapshot.getValue());
-                    }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w("MAPS: ","Error "+databaseError);
+                        }
+                    });
+        }catch (Exception e){
+            Log.e("MAPS: ", "ERROR "+e.getMessage());
+        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-                    }
-                });
     }
 
     private void getAllLocations(Map<String,Object> locations) {
@@ -268,7 +270,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onLocationChanged(@NonNull List<Location> locations) {
+    public void onLocationChanged(List<Location> locations) {
         LocationListener.super.onLocationChanged(locations);
     }
 
@@ -310,6 +312,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.action_perfil:
                 perfil();
                 return true;
+            case R.id.action_camera:
+                camera();
+                return true;
             case R.id.action_veiculos:
                 veiculos();
                 return true;
@@ -324,6 +329,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void perfil(){
         finish();
         Intent intent = new Intent(getApplicationContext(), PerfilActivity.class);
+        startActivity(intent);
+    }
+
+    public void camera(){
+        finish();
+        Intent intent = new Intent(getApplicationContext(),CameraActivity.class);
         startActivity(intent);
     }
 

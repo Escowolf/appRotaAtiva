@@ -90,6 +90,7 @@ public class VeiculosActivity extends AppCompatActivity {
     }
 
     public void home(){
+        finish();
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         startActivity(intent);
     }
